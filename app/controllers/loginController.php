@@ -20,7 +20,7 @@ class loginController{
     }
 
    function generarPass(){
-        $hash = password_hash('tpeweb2', PASSWORD_DEFAULT);
+        $hash = password_hash('tpeweb2', PASSWORD_BCRYPT);
         echo $hash;
     }
 
