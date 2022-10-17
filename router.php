@@ -93,10 +93,11 @@ switch($params[0]){
         $loginController= new loginController();
         $loginController->verifyUser();
         break;
-    case "generarPass":
+        
+    /*case "generarPass":
         $loginController= new loginController();
         $loginController->generarPass();
-        break;
+        break;*/
     case "logOut":
         $loginController= new loginController();
         $loginController->logOut();

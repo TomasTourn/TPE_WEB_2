@@ -18,11 +18,11 @@ class loginController{
     function showLogin(){
         $this->view->showLogin();
     }
-
+/*
    function generarPass(){
-        $hash = password_hash('tpeweb2', PASSWORD_BCRYPT);
+        $hash = password_hash('ejemplo', PASSWORD_BCRYPT);
         echo $hash;
-    }
+    }*/
 
     function verifyUser(){
 
