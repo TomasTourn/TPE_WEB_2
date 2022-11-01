@@ -5,18 +5,18 @@
     
   <div class="form-floating"> 
       
-    <input type="text" class="form-control" id="name"  name="name" placeholder="name" value="">
+    <input type="text" class="form-control" id="name"  name="name" placeholder="name" value="" required>
     <label for="name">Nombre</label>
         
 </div>
 
 <div class="form-floating"> 
-  <input type="number" class="form-control" id="precio" name="price" placeholder="precio" value="">
+  <input type="number" class="form-control" id="precio" name="price" placeholder="precio" value="" required>
           <label for="price">Precio</label>
 </div>
 
 <div class="form-floating"> 
-  <input type="text" class="form-control" id="description" name="description" placeholder="descripcion" value="">
+  <input type="text" class="form-control" id="description" name="description" placeholder="descripcion" value="" required>
           <label for="description">Descripcion</label>
 </div>
 
@@ -26,7 +26,7 @@
 </div>
 
   <div class="form-floating">
-      <select name="genre" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+      <select name="genre" class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
         {foreach from=$genres item=$genre}
             <option value='{$genre->id_genero}'>{$genre->genero}</option>
         {/foreach}
@@ -46,28 +46,28 @@
 <form   action="{$action}/{$game->id_juego}" method="post" enctype="multipart/form-data">
   <div class="form-floating"> 
       
-          <input type="text" class="form-control" id="name" value="{$game->nombre}" name="name" placeholder="name" >
+          <input type="text" class="form-control" id="name" value="{$game->nombre}" name="name" placeholder="name" required>
           <label for="name">Nombre</label>
         
 </div>
 
 <div class="form-floating"> 
-  <input type="number" class="form-control" id="precio" name="price" placeholder="precio" value="{$game->precio}">
+  <input type="number" class="form-control" id="precio" name="price" placeholder="precio" value="{$game->precio}" required>
           <label for="precio">Precio</label>
 </div>
 
 <div class="form-floating"> 
-  <input type="text" class="form-control" id="description" name="description" placeholder="descripcion" value="{$game->descripcion}">
+  <input type="text" class="form-control" id="description" name="description" placeholder="descripcion" value="{$game->descripcion}" required>
           <label for="description">Descripcion</label>
 </div>
 
 <div class="form-floating"> 
   <input type="file" class="form-control" id="image" value="{$game->imagen}" name="image" placeholder="image">
-          <label  for="description">Imagen</label>
+          <label  for="image">Imagen</label>
 </div>
 
   <div class="form-floating">
-      <select name="genre" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+      <select name="genre" class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
         <option value="{$game->id_genero_fk}"  selected>{$game->genero}</option>
         {foreach from=$genres item=$genre}
         

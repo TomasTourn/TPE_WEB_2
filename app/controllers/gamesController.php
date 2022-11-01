@@ -53,7 +53,6 @@ class gamesController{
           $genre= $_POST['genre'];
           
                if($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png"){
-                    echo"la imagen existe";
                     $this->model->addGame($name,$price,$description,$genre,$_FILES['image']['tmp_name']);
                     header("location: ". BASE_URL."home");
                }
