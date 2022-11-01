@@ -44,9 +44,17 @@ class genreController{
 
     function addGenre(){
         $this->userHelper->checkLoggedIn();
-        $genre= $_POST['genre'];
-        $description= $_POST['description'];
-        $this->model->addGenre($genre,$description);
+        if(!empty($_POST['genre']) && !empty($_POST['description'])){
+            $genre= $_POST['genre'];
+            $description= $_POST['description'];
+            $this->model->addGenre($genre,$description);
+            header("location: ". BASE_URL."showGenre");
+        }
+        else{
+            $this->view->showMessage("completar datos");
+        }
+        
+        
     }
 
     function deleteGenre($id){
@@ -72,10 +80,18 @@ class genreController{
 
     function updateGenre($id){
         $this->userHelper->checkLoggedIn();
-        $genre= $_POST['genre'];
-        $description= $_POST['description'];
-        
-        $this->model->updateGenre($id,$genre,$description);
+
+        if(!empty($_POST['genre'])&& !empty($_POST['description'])){
+            $genre= $_POST['genre'];
+            $description= $_POST['description'];
+            
+            $this->model->updateGenre($id,$genre,$description);
+            header("location: ". BASE_URL."showGenre");
+        }
+        else{
+            $this->view->showMessage("completar datos");
+        }
+       
 
 
     }

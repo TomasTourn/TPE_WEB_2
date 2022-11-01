@@ -45,7 +45,6 @@ switch($params[0]){
     case "finishAddGame":
         $gamesController = new gamesController();
         $gamesController->addGame();
-        header("location: ". BASE_URL."home");
         break;
     case "deleteGame":
         $gamesController = new gamesController();
@@ -60,7 +59,6 @@ switch($params[0]){
     case "finishUpdateGame":
         $gamesController = new gamesController();
         $gamesController->updateGame($params[1]);
-        header("location: ". BASE_URL."home");
         break;
 
     case "addGenre":
@@ -70,7 +68,6 @@ switch($params[0]){
     case "finishAddGenre":
         $genresController= new genreController();
         $genresController->addGenre();
-        header("location: ". BASE_URL."showGenre");
         break;
     case "deleteGenre":
         $genresController= new genreController();
@@ -83,7 +80,6 @@ switch($params[0]){
     case "finishUpdateGenre":
         $genresController= new genreController();
         $genresController->updateGenre($params[1]);
-        header("location: ". BASE_URL."showGenre");
         break;
     case "logIn":
         $loginController= new loginController();

@@ -4,12 +4,14 @@ require_once "app/models/gamesModel.php";
 require_once "app/views/gamesView.php";
 require_once "app/models/genreModel.php";
 require_once "helpers/userHelper.php";
+require_once "app/views/genreView.php";
 
 class gamesController{
 
     private $model;
     private $view;
     private $userHelper;
+    private $genreView;
     
 
     function __construct(){
@@ -18,6 +20,7 @@ class gamesController{
         $this->genreModel = new genreModel();
         $this->view = new gamesView();
         $this->userHelper= new userHelper();
+        $this->genreView = new genreView();
     }
 
     function showTable(){
@@ -42,19 +45,28 @@ class gamesController{
 
    function addGame(){
      $this->userHelper->checkLoggedIn();
-     $name= $_POST['name'];
-     $price= $_POST['price'];
-     $description= $_POST['description'];
-     $genre= $_POST['genre'];
 
-     if($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png"){
-          echo"la imagen existe";
-          $this->model->addGame($name,$price,$description,$genre,$_FILES['image']['tmp_name']);
-
+     if(!empty($_POST['name'])&& !empty($_POST['price'])&& !empty($_POST['description'])&& !empty($_POST['genre'])){
+          $name= $_POST['name'];
+          $price= $_POST['price'];
+          $description= $_POST['description'];
+          $genre= $_POST['genre'];
+          
+               if($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png"){
+                    echo"la imagen existe";
+                    $this->model->addGame($name,$price,$description,$genre,$_FILES['image']['tmp_name']);
+                    header("location: ". BASE_URL."home");
+               }
+               else{
+                    $this->model->addGame($name,$price,$description,$genre);
+                    header("location: ". BASE_URL."home");
+               }
      }
+     
      else{
-          $this->model->addGame($name,$price,$description,$genre);
+          $this->genreView->showMessage("complete bien los campos");
      }
+    
 
 
    }
@@ -72,18 +84,26 @@ class gamesController{
    }
    function updateGame($id){
         $this->userHelper->checkLoggedIn();
-        $name= $_POST['name'];
-        $price= $_POST['price'];
-        $description= $_POST['description'];
-        $genre= $_POST['genre'];
 
-        
-        if($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png"){
-          $this->model->updateGame($id,$name,$price,$description,$genre,$_FILES['image']['tmp_name']);
-
-     }else{
-          $this->model->updateGame($id,$name,$price,$description,$genre);
-     }
+        if(!empty($_POST['name'])&& !empty($_POST['price'])&& !empty($_POST['description'])&& !empty($genre= $_POST['genre'])){
+          $name= $_POST['name'];
+          $price= $_POST['price'];
+          $description= $_POST['description'];
+          $genre= $_POST['genre'];
+  
+          
+                    if($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png"){
+                    $this->model->updateGame($id,$name,$price,$description,$genre,$_FILES['image']['tmp_name']);
+                    header("location: ". BASE_URL."home");
+          
+               }else{
+                    $this->model->updateGame($id,$name,$price,$description,$genre);
+                    header("location: ". BASE_URL."home");
+               }
+        }else{
+          $this->genreView->showMessage("completar los datos");
+        }
+     
 
         
 
